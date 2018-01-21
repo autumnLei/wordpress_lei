@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>addArticle</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/admin.css">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/kindeditor/themes/default/default.css">
+	<script src="__ROOT__/kindeditor/kindeditor-all-min.js"></script>
+	<script src="__ROOT__/kindeditor/lang/zh-CN.js"></script>
+	<script src="__JS__/jquery-3.2.1.min.js"></script>
+	<script src="__JS__/jquery.easyui.min.js"></script>
+
+	<script type="text/javascript">
+		function clearForm(){
+			$('#form').form('clear');
+			document.getElementById('add').value='add';
+			document.getElementById('clear').value='clear';
+		}
+		var editor;
+		KindEditor.ready(function(K) {
+			editor = K.create('textarea[name="content1"]', {
+				allowFileManager : true,
+			});
+			K('input[name=getText]').click(function(e) {
+				k('form[id=form]')[0].submit();
+			});
+		});	
+	</script>
+</head>
+<body>
+	<form id="form" action="{:url('admin/Add/addText')}" method="post">
+		<div class="divRow">
+			<div class="divRow">
+				<label>所属栏目：</label>
+				<select class="easyui-combobox" name="state" style="width:200px;" data-options="required:true">
+					<option value="aboutUs">关于我们</option>
+					<option value="connectUs">联系我们</option>
+					<option value="logo">logo</option>
+				</select>
+			</div>
+			<div class="divRow">
+					<label>录入时间：</label>
+					<input type="text" name="time" class="easyui-datebox">
+					<label>推荐权重：</label>
+					<input type="text" name="weight" class="easyui-numberspinner">
+			</div> 
+			<div class="divRow">
+					<label>正文本：</label>
+					<input type="text" name="text" class="easyui-textbox" style="width:300px;height:100px">
+			</div>
+			<div class="divRow">
+				<h3>副文本</h3>
+				<textarea name="content1" style="width:800px;height:400px;"></textarea>
+			</div>
+			<div class="divRow">
+				<!-- <a href="#" onclick="document.getElementById('form').submit();"  class="easyui-linkbutton">添加</a> -->
+				<input id="add" type="submit" class="easyui-linkbutton" name="getText" value="               add                ">
+				<input id="clear" type="text" class="easyui-linkbutton" onclick="clearForm()" value="clear">
+				<!-- <a href="#" onclick="clearForm()" class="easyui-linkbutton">返回</a> -->
+			</div>
+		</div>
+	</form>	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

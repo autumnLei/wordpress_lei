@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>article</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/icon.css">
+	<script src="__JS__/jquery-3.2.1.min.js"></script>
+	<script src="__JS__/jquery.easyui.min.js"></script>
+	<script src="__JS__/admin.js"></script>
+</head>
+<body>
+	<!-- 列表实现 -->
+	<!-- <table id="articleList" class="easyui-datagrid" title="文章列表"
+		data-options = "url: 'static/json/articleList.json', method: 'get'">
+		<thead>
+			<tr>
+				<th data-options="field: 'aId'">ID</th>
+				<th data-options="field: 'aTitle'">标题</th>
+				<th data-options="field: 'tabs'">所属栏目</th>
+				<th data-options="field: 'entryDate'">录入时间</th>
+				<th data-options="field: 'aPush'">是否推荐</th>
+				<th data-options="field: 'operate'">操作</th>
+			</tr>
+		</thead>
+	</table> -->
+
+	<!-- jQuery实现 书上说效果更好 -->
+	<table id="articleList" class="easyui-datagrid"
+		data-options="pageSize: 10,">
+		<div id="articleTool" style="padding:8px 0;">
+			<a href="javascript:" class="easyui-linkbutton" data-options="iconCls: 'icon-add',
+			plain:true" onclick="addArticle('修改文章', '{:url(\"admin/index/addArticle\")}')">修改文章</a>
+			<a href="javascript:" id="aDelArticle" class="easyui-linkbutton" data-options="iconCls: 'icon-cancel',
+			plain:true" >删除文章</a>
+			<!-- <a href="javascript:" id="aPushArticle" class="easyui-linkbutton" data-options="iconCls: 'icon-ok',
+			plain:true" >推荐文章</a> -->
+		</div>
+	</table>
+
+	<form id="fakeForm" action="{:url('admin/Add/addText')}" method="post">
+		<input id="aticleState" hidden="hidden" name="state">
+		<input hidden="hidden" name="time">
+		<input hidden="hidden" name="weight">
+		<input hidden="hidden" name="text">
+		<input hidden="hidden" name="content1">
+	</form>
+
+	<script type="text/javascript">
+		$(function(){
+			//设置easyUI数据网格的属性
+			$('#articleList').datagrid({
+				title: "文章列表",
+				//url: 'static/json/articleList.json',
+				// 从数据库读取 不再从本地读取
+				//method: 'get',
+				pagination: true, //显示分页组件
+				rownumbers: true, //显示行号
+				idField: 'aId', //列表唯一值字段
+/*				用div实现 为了加个id
+				toolbar:[{ //工具栏第一个按钮
+					text:'新增图片',
+					iconCls:'icon-add',
+					handler:function(){addArticle("新增文章", "{:url('admin/index/addArticle')}");}
+				},{ //第二个按钮
+					id: 'DelArticle',
+					text:'删除图片',
+					iconCls:'icon-cancel',
+					//handler:function(){delArticle();}
+				},'-',{
+					text:'推荐图片',
+					iconCls:'icon-ok',
+					handler:function(){alert('ok')}
+				}],*/
+				columns:[[
+					{field: 'ck', checkbox: 'true'}, //复选框
+					{field: 'id', title: 'ID'},
+					{field: 'title', title: '类别'},
+					{field: 'text', title: '文本'},
+					{field: 'paranText', title: '副文本'},
+					{field: 'time', title: '录入时间'},
+					{field: 'weight', title: '权重'}
+				]]
+			})
+			//获取控制器从数据库读取的json数据
+			$('#articleList').datagrid('loadData',{$json});
+			//得到easyUI数据网格的分页组件
+			var pager = $('#articleList').datagrid('getPager');
+			//设置分页属性
+			pager.pagination({
+				showRefresh: false,//不显示刷新按钮
+				pageSize: 10, //每页显示的记录条数，默认为10
+				pageList: [5, 10, 15] //可以设置每页记录条数的列表
+			});
+		})
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

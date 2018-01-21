@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>modifyArticle</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/admin.css">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/kindeditor/themes/default/default.css">
+	<script src="__ROOT__/kindeditor/kindeditor-all-min.js"></script>
+	<script src="__ROOT__/kindeditor/lang/zh-CN.js"></script>
+	<script src="__JS__/jquery-3.2.1.min.js"></script>
+	<script src="__JS__/jquery.easyui.min.js"></script>
+	<script src="__JS__/admin.js"></script>
+
+	<script type="text/javascript">
+			function clearForm(){
+				$('form').form('clear');
+				document.getElementById('add').value='add';
+				document.getElementById('clear').value='clear';
+			}
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {
+					allowFileManager : true
+				});
+				K('input[name=getText]').click(function(e) {
+					//alert(editor.text());
+					k('form[id=form]')[0].submit();
+				});
+			});
+	</script>
+</head>
+<body>
+	<form id="form" action="{:url('admin/modify/modifyPicture_save')}" method="post">
+		<div class="divRow">
+			<div class="divRow">
+				<label>id：</label>
+				<input id="id_modify" type="text" readonly="readonly" class="easyui-textbox" name="id">
+			</div>
+			<div class="divRow">
+				<label>图片类别：</label>
+				<select id="state_modify" class="easyui-combobox" name="state" style="width:200px;" data-options="required:true">
+					<option value="character">人物</option>
+					<option value="science">科技</option>
+					<option value="natural">自然</option>
+				</select>
+			</div>
+				
+			<div class="divRow">
+					<label>录入时间：</label>
+					<input id="time_modify" type="text" name="time" class="easyui-datebox">
+					<label>推荐权重：</label>
+					<input id="weight_modify" type="text" name="weight" class="easyui-numberspinner">
+			</div>
+			<div class="divRow">
+					<label>src：</label>
+					<input id="src_modify" type="text" name="src" class="easyui-textbox" style="width:400px;">
+			</div>
+			<div class="divRow">
+				<h3>文本</h3>
+				<textarea  id="content_modify" name="content" style="width:800px;height:400px;visibility:hidden;">{$pic[0]['text']}</textarea>
+			</div>
+			<div class="divRow">
+				<input id="add" type="submit" class="easyui-linkbutton" name="getText" value="               add                ">
+				<input id="clear" type="text" class="easyui-linkbutton" onclick="clearForm()" value="clear">
+			</div>
+		</div>
+	</form>
+	
+</body>
+<script type="text/javascript">
+	$('#id_modify').val('{$pic[0]['id']}');
+	$('#src_modify').val('{$pic[0]['src']}');
+	$('#time_modify').val('{$pic[0]['time']}');
+	$('#state_modify').val('{$pic[0]['type']}');
+	$('#weight_modify').val('{$pic[0]['weight']}');
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

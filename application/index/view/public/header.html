@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{$head[0]['text']}</title>
+<link rel="stylesheet" type="text/css" href="__CSS__/index.css" charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="__STATIC__/layer/layer.js"></script>
+
+<script type="text/javascript">
+	function show(obj){
+		var src = obj;
+		layer.open({
+        type: 1,
+
+  		title: false,
+ 	    closeBtn: 0,
+ 	    area: ['1000'],
+ 	    offset: '80px',
+ 		shadeClose: true,
+ 	    skin: 'layui-layer-nobg', //没有背景色
+  		content: "<img src='"+src+"' style=\"align:center\" alt='Card image' >"
+    	});
+	}
+</script>
+
+</head>
+<body>
+		<div class="nav-container">
+			<ul class="nav nav-pills nav-justified">
+				<li class="#"><a href="{:url('index/index/index')}">Home</a></li>
+				<li class="#"><a href="{:url('index/Article/aboutUs')}">About Us</a></li>
+				<li class="#"><a href="{:url('index/Article/contactUs')}">Contact Us</a></li>
+			</ul>
+		</div>
+		
+		<audio class="audio" src="__STATIC__/audio/1.mp3" controls="controls"
+		style="width: 18%">您的浏览器不支持 audio 标签。</audio>
+		<div class="body-tabs-line"> </div>
+</body>
+</html>

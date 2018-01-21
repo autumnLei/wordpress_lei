@@ -1,0 +1,29 @@
+
+<body style="background-color: #FFFFFB">
+
+	<div  id="111" class="sider">
+		{include file="public/sider" /}
+	</div>
+	<div class="body">
+		{include file="public/header" /}
+		
+		<div class=" pic-container">
+		<h1>{$top[0]['text']}</h1>
+			<div class="row">
+				{foreach $pic as $key=>$item }
+					<div class="col-xs-4">
+						<div class="card pic">
+						    <img onclick="show('{$item.src}')" class="card-img-top" src="{$item.src}" alt="Card image" style="width:100%">
+						    <div class="card-body">
+						      <!-- <h4 class="card-title">John Doe</h4> -->
+						      <div class="card-text car_text">{$item.text}</div>
+						    </div>
+				 		</div>
+					</div>
+				{/foreach}
+			</div>
+		</div>
+	</div>
+
+</body>
+

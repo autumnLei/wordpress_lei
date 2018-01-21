@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>admin</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/icon.css"
+	>
+	<link rel="stylesheet" type="text/css" href="__CSS__/admin.css">
+	<script src="__JS__/jquery-3.2.1.min.js"></script>
+	<script src="__JS__/jquery.easyui.min.js"></script>
+	<script src="__JS__/admin.js"></script>
+</head>
+<body class="easyui-layout">
+	  <div  data-options="region: 'north'" class="north" style="background-image: url(__IMG__/nav.jpg);">
+	  	<div class="logo"><p>July's backstage</p></div>
+	  	<div class="top_menu">
+	  		<ul class="top_menu_ul">
+	  			<li>welcome! dear manager</li>
+	  			<li><a href="{:url('index/index/index')}">前台首页</a></li>
+	  			<li><a href="{:url('admin/login/index')}">退出管理</a></li>
+	  		</ul>
+	  	</div>
+	  </div>
+      <div data-options="region: 'west', split: true" title="导航菜单"
+      iconCls="icon-ok"  style="width: 250px">
+  	  	<ul class="easyui-tree">
+  	  		<li><span>前台管理</span>
+	  	  		<ul>
+	  	  			<li><span><a href="#" onclick="addTab('图片管理', '{:url(\"admin/index/picture\")}')">图片管理</a></span></li>
+	  	  			<li><span><a href="#" onclick="addTab('文章管理', '{:url(\"admin/index/article\")}')">文章管理</a></span></li>
+	  	  			<li><span><a href="#" onclick="addTab('参数设置', '{:url(\"admin/index/setting\")}')">参数设置</a></span></li>
+	  	  		</ul>
+  	  		</li>
+  	  	</ul>
+		<!-- 没效果 --> 
+  	  	<!-- <ul class="easyui-tree" data-options="url: 'static/json/tree_data.json', method: 'get'" ></ul> -->
+	  </div>
+      <div data-options="region: 'center', border:false">
+      	<div id="main" class="easyui-tabs" style="width: 100%; height: 30px;" data-options="fit:true" >
+      		<!-- 展示页面在这 -->
+      		<div class="old" title="-_-" >
+      			<iframe scrolling="auto" frameborder="0" src="{:url('admin/index/lantianbaiyun')}" 
+      			style="width:100%;height:100%""> </iframe>
+      		</div>
+      		
+      	</div>     	
+      </div>
+      <div class="bottom_div" data-options="region: 'south'"><p>made in zhangjiajie <p></div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>addPicture</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/admin.css">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/kindeditor/themes/simple/simple.css">
+	<script src="__ROOT__/kindeditor/kindeditor-all-min.js"></script>
+	<script src="__ROOT__/kindeditor/lang/zh-CN.js"></script>
+	<script src="__JS__/jquery-3.2.1.min.js"></script>
+	<script src="__JS__/jquery.easyui.min.js"></script>
+	<script src="__JS__/admin.js"></script>
+
+	<script type="text/javascript">
+			function clearForm(){
+				$('form').form('clear');
+				document.getElementById('add').value='add';
+				document.getElementById('clear').value='clear';
+			}
+			KindEditor.ready(function(K) {
+				var editor = K.create('textarea[name="content"]', {
+					allowFileManager : true,
+					fileManagerJson : '__ROOT__/kindeditor/php/file_manager_json.php',
+				});
+				K('input[name=getText]').click(function(e) {
+					//alert(editor.text());
+					k('form[id=form]')[0].submit();
+				});
+				K('#filemanager').click(function() {
+					editor.loadPlugin('filemanager', function() {
+						editor.plugin.filemanagerDialog({
+							viewType : 'VIEW',
+							dirName : 'image',
+							clickFn : function(url, title) {
+								K('#url1').val(url);
+								editor.hideDialog();
+							}
+						});
+					});
+				});
+			});		
+			// KindEditor.ready(function(K) {
+			// 	var uploadbutton = K.uploadbutton({
+			// 		button : K('#uploadButton')[0],
+			// 		fieldName : 'imgFile',
+			// 		url : '__IMG__?dir=file',
+			// 		afterUpload : function(data) {
+			// 			if (data.error === 0) {
+			// 				var url = K.formatUrl(data.url, 'absolute');
+			// 				K('#url').val(url);
+			// 			} else {
+			// 				alert(data.message);
+			// 			}
+			// 		},
+			// 		afterError : function(str) {
+			// 			alert('自定义错误信息: ' + str);
+			// 		}
+			// 	});
+			// 	uploadbutton.fileBox.change(function(e) {
+			// 		uploadbutton.submit();
+			// 	});
+			// });
+			// prettyPrint();
+	</script>
+
+</head>
+<body>
+	<!-- <form>
+		<div class="upload">
+			<input class="ke-input-text" type="text" id="url" value="" readonly="readonly" /> <input type="button" id="uploadButton" value="Upload" />
+		</div>
+	</form> -->
+		
+	<form id="form" action="{:url('admin/add/addPicture')}" method="post">
+		<div class="divRow">
+			<div class="divRow">
+				<label>图片类别：</label>
+				<select class="easyui-combobox" name="state" style="width:200px;" data-options="required:true">
+					<option value="character">人物</option>
+					<option value="science">科技</option>
+					<option value="natural">自然</option>
+				</select>
+			</div>
+				
+			<div class="divRow">
+					<label>录入时间：</label>
+					<input type="text" name="time" class="easyui-datebox">
+					<label>推荐权重：</label>
+					<input type="text" name="weight" class="easyui-numberspinner">
+			</div>
+			<div class="divRow">
+					<label>src：</label>
+					<input type="text" name="src" id="url1" value="" /> <input type="button" id="filemanager" value="浏览服务器" />
+			</div>
+			<div class="divRow">
+				<h3>文本</h3>
+				<textarea name="content" style="width:800px;height:400px;visibility:hidden;"></textarea>
+			</div>
+			<div class="divRow">
+				<!-- <a href="#" onclick="document.getElementById('form').submit();" class="easyui-linkbutton">添加</a>
+				<a href="#" onclick="clearForm()" class="easyui-linkbutton">清除</a> -->
+				<input id="add" type="submit" class="easyui-linkbutton" name="getText" value="               add                ">
+				<input id="clear" type="text" class="easyui-linkbutton" onclick="clearForm()" value="clear">
+			</div>
+		</div>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

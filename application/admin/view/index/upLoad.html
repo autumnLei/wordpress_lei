@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>addPicture</title>
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="__STATIC__/easyUI/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="__CSS__/admin.css">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/kindeditor/themes/simple/simple.css">
+	<script src="__ROOT__/kindeditor/kindeditor-all-min.js"></script>
+	<script src="__ROOT__/kindeditor/lang/zh-CN.js"></script>
+	<script src="__JS__/jquery-3.2.1.min.js"></script>
+	<script src="__JS__/jquery.easyui.min.js"></script>
+	<script src="__JS__/admin.js"></script>
+
+	<script type="text/javascript">
+			KindEditor.ready(function(K) {
+				var editor = K.create('textarea[name="content3"]', {
+					items:	[
+					'image','flash', 'media', 'emoticons', 
+					'baidumap', 'pagebreak','anchor', 
+					'link', 'unlink', '|', 'about'
+					],
+					themeType : 'simple',
+					allowFileManager : true,
+					fileManagerJson : '__ROOT__/kindeditor/php/file_manager_json.php',
+				});
+				K('input[name=getText]').click(function(e) {
+					//alert(editor.text());
+					k('form[id=form]')[0].submit();
+				});
+			});		
+	</script>
+
+</head>
+<body>
+		
+	<form id="form" action="{:url('admin/add/upLoad')}" method="post">
+			<div class="divRow">
+				<h3>上传按钮-编辑框第一个</h3>
+				<textarea name="content3" style="width:800px;height:400px;visibility:hidden;"></textarea>
+			</div>
+			<div class="divRow">
+				<input id="add" type="submit" class="easyui-linkbutton" name="getText" value="               add                ">
+			</div>
+			<input hidden="hidden" name="signal" value="signal">
+		</div>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
